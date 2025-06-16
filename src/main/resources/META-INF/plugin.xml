@@ -3,12 +3,14 @@
     <name>Claude Code</name>
     <vendor>Claude Code</vendor>
     <description><![CDATA[
-    Integrates Claude Code into IntelliJ IDEA with a dedicated tool window.
+    Integrates Claude into IntelliJ IDEA with a dedicated tool window.
     <br/>
     Features:
     <ul>
-        <li>Dedicated Claude Code tool window</li>
-        <li>Embedded terminal with auto-execution of 'claude-code' command</li>
+        <li>Dedicated Claude tool window in the right sidebar</li>
+        <li>Embedded terminal with auto-execution of 'claude' command</li>
+        <li>Configurable options including continue conversation (-c)</li>
+        <li>Custom model selection and additional command flags</li>
         <li>Dockable panel with standard IDE integration</li>
     </ul>
     ]]></description>
@@ -19,8 +21,17 @@
     <extensions defaultExtensionNs="com.intellij">
         <toolWindow 
             id="ClaudeCode"
-            anchor="bottom"
+            anchor="right"
+            secondary="true"
             factoryClass="com.claudecode.plugin.ClaudeCodeToolWindowFactory"
             icon="/icons/claude-code.svg"/>
+        
+        <applicationService 
+            serviceImplementation="com.claudecode.plugin.ClaudeCodeSettings"/>
+        
+        <applicationConfigurable
+            instance="com.claudecode.plugin.ClaudeCodeSettingsConfigurable"
+            displayName="Claude Code"
+            id="ClaudeCode.Settings"/>
     </extensions>
 </idea-plugin>

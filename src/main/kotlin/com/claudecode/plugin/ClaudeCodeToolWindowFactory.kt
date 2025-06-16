@@ -36,7 +36,9 @@ class ClaudeCodeToolWindowFactory : ToolWindowFactory {
                 ApplicationManager.getApplication().invokeLater {
                     if (!project.isDisposed && !Disposer.isDisposed(terminalWidget)) {
                         try {
-                            terminalWidget.executeCommand("claude-code")
+                            val settings = ClaudeCodeSettings.getInstance()
+                            val command = settings.buildCommand()
+                            terminalWidget.executeCommand(command)
                         } catch (e: Exception) {
                             // Terminal might be disposed, ignore
                         }

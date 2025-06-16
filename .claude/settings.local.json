@@ -11,7 +11,9 @@
       "Bash(rm:*)",
       "Bash(mv:*)",
       "Bash(true)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Git:*",
+      "Bash(*)"
     ],
     "deny": []
   }

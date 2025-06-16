@@ -1,18 +1,22 @@
 # Claude Code IntelliJ IDEA Plugin
 
-Integrate Claude Code directly into your IntelliJ IDEA workflow with this plugin. It adds a dedicated Claude Code tool window that runs the `claude-code` command in an embedded terminal.
+Integrate Claude directly into your IntelliJ IDEA workflow with this plugin. It adds a dedicated Claude tool window in the right sidebar that runs the `claude` command in an embedded terminal.
 
 ## Features
 
-- Dedicated "Claude Code" tool window in IntelliJ IDEA
-- Automatically launches `claude-code` when opened
+- Dedicated "Claude Code" tool window in the right sidebar
+- Automatically launches `claude` when opened
+- Configurable startup options:
+  - Continue previous conversation (-c)
+  - Custom model selection (sonnet, opus, etc.)
+  - Additional command-line flags
 - Seamless integration with the IDE's terminal
 - Custom Claude Code icon in the tool window
 
 ## Prerequisites
 
 - IntelliJ IDEA 2023.3 or later
-- Claude Code CLI installed and available in your PATH
+- Claude CLI installed and available in your PATH
 - Java 17 or later
 
 ## Installation
@@ -37,10 +41,18 @@ Integrate Claude Code directly into your IntelliJ IDEA workflow with this plugin
 
 ## Usage
 
-1. After installation, you'll see a "Claude Code" tab at the bottom of your IDE
-2. Click the tab to open the Claude Code terminal
-3. The `claude-code` command will start automatically
-4. Use Claude Code as you normally would in a terminal
+1. After installation, you'll see a "Claude Code" tab in the right sidebar of your IDE
+2. Click the tab to open the Claude terminal
+3. The `claude` command will start automatically with your configured options
+4. Use Claude as you normally would in a terminal
+
+### Configuration
+
+1. Go to **Settings/Preferences** → **Tools** → **Claude Code**
+2. Configure startup options:
+   - **Continue previous conversation**: Adds `-c` flag to continue your last conversation
+   - **Custom model**: Select a specific model (sonnet, opus, etc.)
+   - **Additional flags**: Add any other command-line options like `--debug` or `--verbose`
 
 ## Development
 
@@ -73,13 +85,13 @@ The plugin includes unit tests for the main components. Run them with:
 
 ## Troubleshooting
 
-### Claude Code command not found
+### Claude command not found
 
-If you see an error about `claude-code` not being found:
+If you see an error about `claude` not being found:
 
-1. Ensure Claude Code is installed: `which claude-code`
+1. Ensure Claude is installed: `which claude`
 2. If installed via npm, ensure npm bin is in your PATH
-3. Restart IntelliJ IDEA after installing Claude Code
+3. Restart IntelliJ IDEA after installing Claude
 
 ### Tool window doesn't appear
 
