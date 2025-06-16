@@ -1,0 +1,26 @@
+<idea-plugin>
+    <id>com.claudecode.plugin</id>
+    <name>Claude Code</name>
+    <vendor>Claude Code</vendor>
+    <description><![CDATA[
+    Integrates Claude Code into IntelliJ IDEA with a dedicated tool window.
+    <br/>
+    Features:
+    <ul>
+        <li>Dedicated Claude Code tool window</li>
+        <li>Embedded terminal with auto-execution of 'claude-code' command</li>
+        <li>Dockable panel with standard IDE integration</li>
+    </ul>
+    ]]></description>
+    
+    <depends>com.intellij.modules.platform</depends>
+    <depends>org.jetbrains.plugins.terminal</depends>
+    
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow 
+            id="ClaudeCode"
+            anchor="bottom"
+            factoryClass="com.claudecode.plugin.ClaudeCodeToolWindowFactory"
+            icon="/icons/claude-code.svg"/>
+    </extensions>
+</idea-plugin>
