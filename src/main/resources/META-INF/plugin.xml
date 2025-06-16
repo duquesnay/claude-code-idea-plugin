@@ -33,5 +33,8 @@
             instance="com.claudecode.plugin.ClaudeCodeSettingsConfigurable"
             displayName="Claude Code"
             id="ClaudeCode.Settings"/>
+            
+        <postStartupActivity
+            implementation="com.claudecode.plugin.ClaudeCodeStartupActivity"/>
     </extensions>
 </idea-plugin>

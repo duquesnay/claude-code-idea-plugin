@@ -5,11 +5,15 @@ Integrate Claude directly into your IntelliJ IDEA workflow with this plugin. It 
 ## Features
 
 - Dedicated "Claude Code" tool window in the right sidebar
+- Multiple Claude sessions in tabs
 - Automatically launches `claude` when opened
 - Configurable startup options:
-  - Continue previous conversation (-c)
+  - Continue previous conversation (-c) - enabled by default
   - Custom model selection (sonnet, opus, etc.)
   - Additional command-line flags
+- Quick access to settings from tool window gear menu
+- Automatic restoration of tool window state on project restart
+- Keyboard shortcut (Ctrl+Shift+N) for new sessions
 - Seamless integration with the IDE's terminal
 - Custom Claude Code icon in the tool window
 
@@ -46,13 +50,22 @@ Integrate Claude directly into your IntelliJ IDEA workflow with this plugin. It 
 3. The `claude` command will start automatically with your configured options
 4. Use Claude as you normally would in a terminal
 
+### Multiple Sessions
+
+- Click the gear icon in the tool window and select "New Claude Session"
+- Or use the keyboard shortcut **Ctrl+Shift+N** when the tool window is focused
+- Each session runs independently with its own conversation context
+
 ### Configuration
 
-1. Go to **Settings/Preferences** → **Tools** → **Claude Code**
-2. Configure startup options:
-   - **Continue previous conversation**: Adds `-c` flag to continue your last conversation
-   - **Custom model**: Select a specific model (sonnet, opus, etc.)
-   - **Additional flags**: Add any other command-line options like `--debug` or `--verbose`
+Access settings in two ways:
+1. Click the gear icon in the Claude Code tool window → "Claude Settings"
+2. Go to **Settings/Preferences** → **Tools** → **Claude Code**
+
+Configure startup options:
+- **Continue previous conversation**: Adds `-c` flag to continue your last conversation (enabled by default)
+- **Custom model**: Select a specific model (sonnet, opus, etc.)
+- **Additional flags**: Add any other command-line options like `--debug` or `--verbose`
 
 ## Development
 
