@@ -9,7 +9,7 @@ import com.intellij.util.xmlb.XmlSerializerUtil
 )
 @Service
 class ClaudeCodeSettings : PersistentStateComponent<ClaudeCodeSettings> {
-    var continueConversation: Boolean = false
+    var continueConversation: Boolean = true
     var useCustomModel: Boolean = false
     var customModel: String = "sonnet"
     var additionalFlags: String = ""
