@@ -14,8 +14,10 @@ class ClaudeCodeToolWindowFactoryTest : BasePlatformTestCase() {
         val factory = ClaudeCodeToolWindowFactory()
         val toolWindow = mock(ToolWindow::class.java)
         val contentManager = mock(ContentManager::class.java)
+        val disposable = mock(com.intellij.openapi.Disposable::class.java)
         
         `when`(toolWindow.contentManager).thenReturn(contentManager)
+        `when`(toolWindow.disposable).thenReturn(disposable)
         
         factory.createToolWindowContent(project, toolWindow)
         
@@ -33,8 +35,10 @@ class ClaudeCodeToolWindowFactoryTest : BasePlatformTestCase() {
         val factory = ClaudeCodeToolWindowFactory()
         val toolWindow = mock(ToolWindow::class.java)
         val contentManager = mock(ContentManager::class.java)
+        val disposable = mock(com.intellij.openapi.Disposable::class.java)
         
         `when`(toolWindow.contentManager).thenReturn(contentManager)
+        `when`(toolWindow.disposable).thenReturn(disposable)
         
         assertDoesNotThrow {
             factory.createToolWindowContent(project, toolWindow)
@@ -46,8 +50,10 @@ class ClaudeCodeToolWindowFactoryTest : BasePlatformTestCase() {
         val factory = ClaudeCodeToolWindowFactory()
         val toolWindow = mock(ToolWindow::class.java)
         val contentManager = mock(ContentManager::class.java)
+        val disposable = mock(com.intellij.openapi.Disposable::class.java)
         
         `when`(toolWindow.contentManager).thenReturn(contentManager)
+        `when`(toolWindow.disposable).thenReturn(disposable)
         
         factory.createToolWindowContent(project, toolWindow)
         
