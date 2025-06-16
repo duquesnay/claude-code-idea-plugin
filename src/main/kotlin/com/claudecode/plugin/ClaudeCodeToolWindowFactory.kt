@@ -60,22 +60,27 @@ class ClaudeCodeToolWindowFactory : ToolWindowFactory {
             toolWindow.contentManager.addContent(content)
             toolWindow.contentManager.setSelectedContent(content)
             
-            // Delay command execution to ensure terminal is fully initialized
-            Timer(500) { 
-                ApplicationManager.getApplication().invokeLater {
-                    if (!project.isDisposed && !Disposer.isDisposed(terminalWidget)) {
-                        try {
-                            val settings = ClaudeCodeSettings.getInstance()
-                            val command = settings.buildCommand()
-                            terminalWidget.executeCommand(command)
-                        } catch (e: Exception) {
-                            // Terminal might be disposed, ignore
+            // Schedule command execution after terminal is ready
+            ApplicationManager.getApplication().invokeLater {
+                // Give the terminal time to fully initialize
+                Timer(2000) {
+                    ApplicationManager.getApplication().invokeLater {
+                        if (!project.isDisposed && !Disposer.isDisposed(terminalWidget)) {
+                            try {
+                                val settings = ClaudeCodeSettings.getInstance()
+                                val command = settings.buildCommand()
+                                
+                                // Execute the command
+                                terminalWidget.executeCommand(command)
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                            }
                         }
                     }
+                }.apply {
+                    isRepeats = false
+                    start()
                 }
-            }.apply {
-                isRepeats = false
-                start()
             }
             
             // Register proper disposal
