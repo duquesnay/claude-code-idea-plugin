@@ -1,7 +1,7 @@
 # Claude Code IntelliJ IDEA Plugin
 
 Integrate Claude directly into your IntelliJ IDEA workflow with this plugin. It adds a dedicated Claude tool window in the right sidebar that runs the `claude` command in an embedded terminal.
-
+(disclaimer: fully generate with Claude Code)
 ## Features
 
 - Dedicated "Claude Code" tool window in the right sidebar
