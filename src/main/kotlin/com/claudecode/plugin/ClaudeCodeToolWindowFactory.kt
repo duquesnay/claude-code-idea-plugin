@@ -44,53 +44,29 @@ class ClaudeCodeToolWindowFactory : ToolWindowFactory {
         val terminalView = TerminalView.getInstance(project)
         val contentFactory = ContentFactory.getInstance()
         
-        try {
-            val terminalWidget = terminalView.createLocalShellWidget(
-                project.basePath ?: System.getProperty("user.home"),
-                "Claude Terminal ${sessionCounter}"
-            )
-            
-            val displayName = tabName ?: "Claude ${sessionCounter++}"
-            val content = contentFactory.createContent(
-                terminalWidget.component,
-                displayName,
-                true // Make tabs closeable
-            )
-            
-            toolWindow.contentManager.addContent(content)
-            toolWindow.contentManager.setSelectedContent(content)
-            
-            // Schedule command execution after terminal is ready
-            ApplicationManager.getApplication().invokeLater {
-                // Give the terminal time to fully initialize
-                Timer(2000) {
-                    ApplicationManager.getApplication().invokeLater {
-                        if (!project.isDisposed && !Disposer.isDisposed(terminalWidget)) {
-                            try {
-                                val settings = ClaudeCodeSettings.getInstance()
-                                val command = settings.buildCommand()
-                                
-                                // Execute the command
-                                terminalWidget.executeCommand(command)
-                            } catch (e: Exception) {
-                                e.printStackTrace()
-                            }
-                        }
-                    }
-                }.apply {
-                    isRepeats = false
-                    start()
-                }
-            }
-            
-            // Register proper disposal
-            Disposer.register(content, Disposable {
-                // Cleanup when content is disposed
-            })
-            
-        } catch (e: Exception) {
-            // Handle any initialization errors gracefully
-            e.printStackTrace()
+        val terminalWidget = terminalView.createLocalShellWidget(
+            project.basePath ?: System.getProperty("user.home"),
+            "Claude Terminal ${sessionCounter}"
+        )
+        
+        val displayName = tabName ?: "Claude ${sessionCounter++}"
+        val content = contentFactory.createContent(
+            terminalWidget.component,
+            displayName,
+            true
+        )
+        
+        toolWindow.contentManager.addContent(content)
+        toolWindow.contentManager.setSelectedContent(content)
+        
+        // Execute claude command after a short delay
+        Timer(1000) {
+            val settings = ClaudeCodeSettings.getInstance()
+            val command = settings.buildCommand()
+            terminalWidget.executeCommand(command)
+        }.apply {
+            isRepeats = false
+            start()
         }
     }
     
